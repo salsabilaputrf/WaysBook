@@ -14,6 +14,7 @@ type BookRepository interface {
 	GetBook(id int) (models.Book, error)
 	ListAddPromo() ([]models.Book, error)
 	ListPromoBook() ([]models.Book, error)
+	AddOrder(userId, bookId int) (error)
 }
 
 func RepositoryBook(db *gorm.DB) *repository {
@@ -62,6 +63,25 @@ func (r *repository) ListPromoBook() ([]models.Book, error) {
 	err := r.db.Where("is_promo = ?", true).Find(&book).Error
 
 	return book, err
+}
+
+func (r *repository) AddOrder(userId, bookId int) (error) {
+	// cari user berdasarkan userId
+	var order models.Order
+	// err := r.db.First(&user, userId).Error
+	// fmt.Println("user : ", user )
+
+	// cari book berdasarkan bookId
+	var book models.Book
+	err := r.db.First(&book, bookId).Error
+	fmt.Println("book : ", book )
+
+	// tambahkan book ke user
+	err = r.db.Model(&order).Association("Books").Append(&book)
+
+	fmt.Println("error : ", err )
+
+	return err
 }
 
 

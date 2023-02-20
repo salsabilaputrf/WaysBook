@@ -5,9 +5,12 @@ import { Route, Routes } from "react-router-dom";
 import Home from "@/pages/index";
 import AddBook from "@/pages/Admin/AddBook";
 import AddPromo from "@/pages/Admin/AddPromo";
+import Detail from "@/pages/Reader/Detail";
+import Order from "@/pages/Reader/Order";
 import {AppContext}  from "@/context/AppContext";
 import Dashboard from "@/pages/Admin/index";
-import {API, setAuthToken} from "@/config/api"
+import {API, setAuthToken} from "@/config/api";
+import IsLogin from "@/components/IsLogin";
 if (localStorage.token) {
 	setAuthToken(localStorage.token);
 }
@@ -68,11 +71,11 @@ console.log("state", state)
 			) : (
 			<>
 				<Route path="/" element={<Home />} />
-				{/* <Route path="/detail/:id" element={<Detail />} /> */}
-				{/* <Route path="/" element={<IsLogin />} >
-					<Route path="/profile" element={<Profile />} />
-
-				</Route> */}
+				<Route path="/detail/:id" element={<Detail />} />
+				<Route path="/" element={<IsLogin />} >
+					{/* <Route path="/profile" element={<Profile />} /> */}
+					<Route path="/order" element={<Order />} />
+				</Route>
 			</>
 			)}
 		</Routes>

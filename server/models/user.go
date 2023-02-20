@@ -3,19 +3,20 @@ package models
 import "time"
 
 type User struct {
-	ID          int           `json:"id" gorm:"primary_key:auto_increment"`
-	Fullname    string        `json:"fullname" gorm:"type: varchar(255)"`
-	Email       string        `json:"email" gorm:"type: varchar(255)"`
-	Password    string        `json:"-" gorm:"type: varchar(255)"`
-	Gender      string        `json:"gender" gorm:"type: varchar(255)"`
-	Phone       string        `json:"phone" gorm:"type: varchar(255)"`
-	Address     string        `json:"address" gorm:"type: text"`
-	Role        string        `json:"role" gorm:"type: varchar(255)"`
-	Image       string        `json:"image" gorm:"type: varchar(255)"`
-	Books       []Book        `json:"books" gorm:"many2many:user_books;"`
+	ID           int           `json:"id" gorm:"primary_key:auto_increment"`
+	Fullname     string        `json:"fullname" gorm:"type: varchar(255)"`
+	Email        string        `json:"email" gorm:"type: varchar(255)"`
+	Password     string        `json:"-" gorm:"type: varchar(255)"`
+	Gender       string        `json:"gender" gorm:"type: varchar(255)"`
+	Phone        string        `json:"phone" gorm:"type: varchar(255)"`
+	Address      string        `json:"address" gorm:"type: text"`
+	Role         string        `json:"role" gorm:"type: varchar(255)"`
+	Image        string        `json:"image" gorm:"type: varchar(255)"`
+	Books        []Book        `json:"books" gorm:"many2many:user_books;"`
 	Transactions []Transaction `json:"transaction" gorm:"foreignKey:UserID"`
-	CreatedAt   time.Time     `json:"-" gorm:"type: TIMESTAMP DEFAULT CURRENT_TIMESTAMP"`
-	UpdatedAt   time.Time     `json:"-" gorm:"type: TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"`
+	Orders        []Order        `json:"order" gorm:"foreignKey:UserID"`
+	CreatedAt    time.Time     `json:"-" gorm:"type: TIMESTAMP DEFAULT CURRENT_TIMESTAMP"`
+	UpdatedAt    time.Time     `json:"-" gorm:"type: TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"`
 }
 
 type UserProfileResponse struct {

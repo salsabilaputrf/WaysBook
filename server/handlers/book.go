@@ -142,7 +142,7 @@ func (h *handlerBook) AddPromo(c echo.Context) error {
 
 	data, err := h.BookRepository.AddPromo(request.Discount, id)
 	if err != nil {
-		fmt.Println("dua")
+	
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
 	}
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: data})
@@ -172,4 +172,45 @@ func (h *handlerBook) ListPromoBook(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: books})
+}
+
+func (h *handlerBook) ListBook(c echo.Context) error {
+	
+
+	books, err := h.BookRepository.ListAddPromo()
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: books})
+}
+
+func (h *handlerBook) GetBook(c echo.Context) error {
+	
+	
+	id, _ := strconv.Atoi(c.Param("id"))
+
+
+	data, err := h.BookRepository.GetBook(id)
+	if err != nil {
+
+		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
+	}
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: data})
+}
+
+func (h *handlerBook) AddOrder(c echo.Context) error {
+	
+	userLogin := c.Get("userLogin")
+	userId, _:= strconv.Atoi(fmt.Sprintf("%v", userLogin.(jwt.MapClaims)["id"]))
+	// userId := userLogin.(jwt.MapClaims)["id"]
+	id, _ := strconv.Atoi(c.Param("id"))
+
+
+	err := h.BookRepository.AddOrder(userId, id)
+	if err != nil {
+
+		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
+	}
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK})
 }

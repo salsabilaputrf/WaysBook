@@ -43,7 +43,20 @@ export default function Layouts(props) {
 				!rounded-lg flex place-items-center'
 				>
 					{state.isLogin === true ? (
-					<div className='pb-3 md:pb-0'>
+					<div className='pb-3 md:pb-0 flex gap-12'>
+						
+						<Link to="/order" >
+						
+  
+							<div className="flex items-center p-3 text-sm font-medium text-black-600  rounded-b-lg  hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-red-500 hover:underline">
+								<img style={{width: "40px"}} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACp0lEQVR4nO2ZvWsUQRjGfysRjKWFGNEEg8bO+NGJ2CgnCPoXGAUFC69QTBBMkcpCIgpJ1MIvTBptFBS8iIIkQi5izn9BEVGwslB7GXgPXudmb293Z/f2YH8wpHjem32enWE+NlBSUpIF+4Bp4AXwDLgG7KIHWAdcAj4CDat9AM5QcPNTDuN2u0CPmL8ObAeGgbtFDhEAVy2DUxKqyXrgplVzkR4xX9gQQQzzhQsRJDBfmBBBCvNdDxF4MN+1EIFH87mHCDIw3yTzEFmazzxEHua9hdgMzAF11cE34K9q3zs466Rpn4Cf1jO/KN14mxWvLdxxdPg7R/ONkBC/HDW3XQHeOwq/An9kJPIw31AhfsgL/OzQjdcWXqqCEYrHiPJnvLYwrQpOUjxOKH/GawtnVcEViseE8nfOVXBQFTyieNxX/g65CjapguWQTqqylFUT6Gl+GwBLyp9zGTU8lIIHIXpdXdD7HPqq6KsxtT7ps7nW22xT5t/Qhn7ggPx1sag6GnDoeqmLo21VWs2hH1G62WwTM686GvUYYK/SHjv0qtLDpuB/821YzibtltqKxwDHIpbIWaUfjQowKYULjkPbuOpozGOA00q77NCfK30wKoAuNiOhGVPauMcAE0o75dDNd6Q1GQkzQ9pyS3V23NIqEUOdNMCNiKlp2EiHnG8znKNKm/cYYEFpe0jJYdXZPUsbUNqixwCvlbYlzdtHdrlmZ0vWnIvacJJuZPWQDTKQeb8W93vqWxXCfKD1cVxIog0qH2Zx6Zi5OOtuhlSUj5k4P9Q7n9kXusWk8hFrCu22rm9D5M+Qdc01nhKfe2oynGGHPJ/0y7NqEeejSHYA76zlrxttGdiZ9G3st95E3u2V/MczFRvkDvoUWMnB9ArwRO7o5tklJSWE8w/DGM+MRpBpHgAAAABJRU5ErkJggg=="/>
+								<div class="inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full object-right-top  dark:border-gray-900">20</div>
+  
+							</div>
+							
+						</Link>
+
+						
 						<Dropdown
 							arrowIcon={false}
 							inline={true}
@@ -52,6 +65,7 @@ export default function Layouts(props) {
 									alt='User settings'
 									img={state.user.image}
 									rounded={true}
+									style={{paddingTop: "8px"}}
 								/>
 							}
 						>
@@ -120,6 +134,9 @@ export default function Layouts(props) {
 						</Dropdown>
 					</div>
 					) : (
+
+					<>
+			
 					<div className='flex items-center gap-4'>
 						<Button
 							color='light'
@@ -136,6 +153,7 @@ export default function Layouts(props) {
 							Register
 						</Button>
 					</div>
+					</>
 					)}
 				</Navbar.Collapse>
 			</Header>

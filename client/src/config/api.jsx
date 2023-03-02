@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create base URL API
 export const API = axios.create({
-  baseURL: 'https://waysbook.up.railway.app/',
+  baseURL: 'https://waysbook.up.railway.app/api/v1/',
 });
 
 // Set Authorization Token Header

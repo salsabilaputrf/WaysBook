@@ -30,13 +30,15 @@ func main() {
 	database.RunMigration()
 	database.RunSeeder()
 
-	routes.RouteInit(e.Group("/api/" + VERSION))
+
 
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{echo.GET, echo.POST, echo.PATCH, echo.DELETE},
 		AllowHeaders: []string{"X-Requested-With", "Content-Type", "Authorization"},
 	}))
+
+	routes.RouteInit(e.Group("/api/" + VERSION))
 
 	fmt.Println("server running localhost:5000")
 	e.Logger.Fatal(e.Start(":" + PORT))

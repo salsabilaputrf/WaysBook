@@ -199,18 +199,20 @@ func (h *handlerBook) GetBook(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: data})
 }
 
-func (h *handlerBook) AddOrder(c echo.Context) error {
-	
+func (h *handlerBook) RemovePromo(c echo.Context) error {
 	userLogin := c.Get("userLogin")
-	userId, _:= strconv.Atoi(fmt.Sprintf("%v", userLogin.(jwt.MapClaims)["id"]))
-	// userId := userLogin.(jwt.MapClaims)["id"]
+	userRole := userLogin.(jwt.MapClaims)["role"]
+	if userRole != "admin" {
+		return c.JSON(http.StatusUnauthorized, dto.ErrorResult{Code: http.StatusUnauthorized, Message: "unathorized"})
+	}
+
 	id, _ := strconv.Atoi(c.Param("id"))
 
-
-	err := h.BookRepository.AddOrder(userId, id)
+	data, err := h.BookRepository.RemovePromo(id)
 	if err != nil {
-
+	
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
 	}
-	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK})
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: data})
 }
+

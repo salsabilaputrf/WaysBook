@@ -20,5 +20,5 @@ func BookRoutes(e *echo.Group) {
 	e.GET("/listPromoBook", h.ListPromoBook)
 	e.GET("/listBook", h.ListBook)
 	e.GET("/book/:id", h.GetBook)
-	e.POST("/addOrder/:id", middleware.Auth(h.AddOrder))
+	e.PATCH("/removePromo/:id", h.RemovePromo)
 }

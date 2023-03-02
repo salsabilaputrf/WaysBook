@@ -21,7 +21,7 @@ func DatabaseInit() {
 	DB_PORT := os.Getenv("DB_PORT")
 
 	var err error
-	if DB_TYPE == "mysql" {
+	if DB_TYPE != "mysql" {
 		dsn := DB_USER + ":" + DB_PASSWORD + "@tcp(localhost:" + DB_PORT + ")/" + DB_NAME + "?charset=utf8mb4&parseTime=True&loc=Local"
 		DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	} else {

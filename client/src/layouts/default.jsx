@@ -44,7 +44,7 @@ export default function Layouts(props) {
 				>
 					{state.isLogin === true ? (
 					<div className='pb-3 md:pb-0 flex gap-12'>
-						
+						{state.user.role === "reader" ? (
 						<Link to="/order" >
 						
   
@@ -55,7 +55,9 @@ export default function Layouts(props) {
 							</div>
 							
 						</Link>
-
+						) : (
+							<div></div>
+						)}
 						
 						<Dropdown
 							arrowIcon={false}
@@ -109,6 +111,16 @@ export default function Layouts(props) {
 								<div className="flex items-center p-3 text-sm font-medium text-black-600  rounded-b-lg  hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-red-500 hover:underline">
 								<img src="https://img.icons8.com/dotty/80/000000/sale-price-tag.png" style={{width: "30px"}}/>
 									Add Promo
+								</div>
+								
+							</Link>
+
+							</Dropdown.Item>
+							<Dropdown.Item>
+							<Link to="/listPromoBook" >
+								<div className="flex items-center p-3 text-sm font-medium text-black-600  rounded-b-lg  hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-red-500 hover:underline">
+								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABsklEQVR4nO2ZsUoDQRCGPzGFgiCITcBWsLKxt/ABRC2SKr6Cb+ADiGBEGxFREBtPvJhTH8ImaGNjJ0QfQxZHGI5LNMls7g73g2G5XW7+ndu7WXYOAoHAv6AC1IAmEAOJJ4tFoyaaZpPf9zjppIftWQVRz2HyiZhbiZE5VA43LJc2A+d7U+kdYIB+531O/odK6psYGb2k4yKx1AwBFHUFtoEIaKT6WgNkmZbck0sAkfRdZ/QNYlFeATTKvgI+SUIAirACQ5CENKoIaZTB0+idjLu2lB/xjui5tpQBOKYxIq8AzCh9AKcyedeWkqqcU10b4PvMW5diQdwjvT4DXeCkaE/sLzWmDvAp9k7B+K3G9KQm/wFcWIjOAmvS+qwxrQJtNb4LTBpociQOXeurxrQM3Kox95pNUcB9IMvXYuosfQzMGGj1FbXyVQUuVd85MG+g01fUytcccKaur4AFA42+ola+HlMf9A2whCcsi7vOxwPwpnzGwAoe0U9qa8Qg7oFXyfPOX1tStFdqQ1TbetmL2qjc9TpjoCK/eywC6KpdNusoWfiffB0JwmWfiXEGEAgEKCZfRuZHKgLr0lYAAAAASUVORK5CYII=" style={{width: "30px"}}/>
+									List Book Promo
 								</div>
 								
 							</Link>

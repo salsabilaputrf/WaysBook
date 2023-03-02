@@ -6,6 +6,7 @@ import Home from "@/pages/index";
 import AddBook from "@/pages/Admin/AddBook";
 import AddPromo from "@/pages/Admin/AddPromo";
 import Detail from "@/pages/Reader/Detail";
+import ListPromoBook from "@/pages/Admin/ListBookPromo";
 import Order from "@/pages/Reader/Order";
 import {AppContext}  from "@/context/AppContext";
 import Dashboard from "@/pages/Admin/index";
@@ -67,6 +68,7 @@ console.log("state", state)
 				<Route path="/" element={<Dashboard />} />
 				<Route path="/addbook" element={<AddBook />} />
 				<Route path="/addpromo" element={<AddPromo />} />
+				<Route path="/listpromobook" element={<ListPromoBook />} />
 			</>
 			) : (
 			<>

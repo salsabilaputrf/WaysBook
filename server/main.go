@@ -20,7 +20,7 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	SERVER_NAME := os.Getenv("SERVER_NAME")
+	// SERVER_NAME := os.Getenv("SERVER_NAME")
 	PORT := os.Getenv("SERVER_PORT")
 	VERSION := os.Getenv("API_VERSION")
 
@@ -37,7 +37,7 @@ func main() {
 		AllowMethods: []string{echo.GET, echo.POST, echo.PATCH, echo.DELETE},
 		AllowHeaders: []string{"X-Requested-With", "Content-Type", "Authorization"},
 	}))
-	
+
 	fmt.Println("server running localhost:5000")
-	e.Logger.Fatal(e.Start(SERVER_NAME + ":" + PORT))
+	e.Logger.Fatal(e.Start(":" + PORT))
 }

@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -29,6 +30,7 @@ func HandlerAuth(AuthRepository repositories.AuthRepository) *handlerAuth {
 func (h *handlerAuth) Register(c echo.Context) error {
 	request := new(authdto.RegisterRequest)
 	if err := c.Bind(request); err != nil {
+		fmt.Println("pas request")
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
 
@@ -55,13 +57,13 @@ func (h *handlerAuth) Register(c echo.Context) error {
 	}
 
 	if h.AuthRepository.IsRegistered(request.Email) {
-
+		fmt.Println("pas cek email")
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: "This Account has been Registered"})
 	}
 
 	data, err := h.AuthRepository.Register(user)
 	if err != nil {
-
+		fmt.Println("pas add")
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
 	}
 

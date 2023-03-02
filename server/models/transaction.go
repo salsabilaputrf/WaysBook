@@ -10,6 +10,6 @@ type Transaction struct {
 	User   User    `json:"user" gorm:"foreignKey: UserID"`
 	Status string  `json:"status" gorm:"type: varchar(255)"`
 
-	CreatedAt time.Time `json:"-" gorm:"type: TIMESTAMP DEFAULT CURRENT_TIMESTAMP"`
-	UpdatedAt time.Time `json:"-" gorm:"type: TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"`
+	CreatedAt time.Time `json:"-" gorm:"type:timestamp with time zone;default:now()"`
+	UpdatedAt time.Time `json:"-" gorm:"type:timestamp with time zone;default:now()"`
 }

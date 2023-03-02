@@ -15,8 +15,8 @@ type User struct {
 	Books        []Book        `json:"books" `
 	Transactions []Transaction `json:"transactions" `
 
-	CreatedAt time.Time `json:"-" gorm:"type: TIMESTAMP DEFAULT CURRENT_TIMESTAMP"`
-	UpdatedAt time.Time `json:"-" gorm:"type: TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"`
+	CreatedAt time.Time `json:"-" gorm:"type:timestamp with time zone;default:now()"`
+	UpdatedAt time.Time `json:"-" gorm:"type:timestamp with time zone;default:now()"`
 }
 
 type UserProfileResponse struct {
